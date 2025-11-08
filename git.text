@@ -8,8 +8,6 @@ copy this key and paste in github -> setting >add sshkey section
 
 
 
-
-
 2// Create a repository on github account..
 -> Create an account of github 
 -> on the nav bar click on the + sign and select the new repository option.
@@ -26,7 +24,167 @@ copy this key and paste in github -> setting >add sshkey section
 -> ls
 ->index.html  index.js  style.css
 
-4//
+4//Create a new file, say test.txt, in main/master branch. Make some changes to this file and commit the changes.
+-> touch text.txt
+-> git add .
+-> git commit -m "first commit"
+
+5// Create two branches from main/master branch, say f1 and f2.
+-> git branch // master
+-> git branch f1
+-> git branch f2
+-> git branch -a //f1 f2 master
+
+6//How can you resolve a merge conflict in Git, provide an example.
+-> i did some change in master branch in text file  like  changing the existing line with hello world
+-> then git add .  and git commit -m "chnages"
+->checkout to another brnach after commit . in this branch i change the same like with hello india. 
+-> then git add . and git commit -m "changes in f1 banch" and git push
+-> git checkout master
+-> git merge f1
+->	<<<<<<< HEAD
+	hello world
+	=======
+	hello india
+	>>>>>>> f1
+->this will come after that.
+->now i can accept incoming , current , both changes  and then commit then .
+->
+hello world
+hello india
+
+7// Show how divergence occurs in a branch.
+-> create and switch to f1 branch // git checkout f1
+->make changes and commit it // git add .   and git commit -m "first commit";
+-> switch to master branch //git checkout master;
+-> do some change and commit it //// git add .   and git commit -m "intial commit";
+-> both branch start from same commit ;
+-> now each brnch have different commit because of that commit history are diverged now
+-> Merging both branch will give conflict as  changes happen in same line. git will detect diverged
+	git merge f1
+	# Resolve conflicts if any
+	git add .
+	git commit -m "Merge f1 into master"
+	
+8// Difference between git init and git clone.
+git init
+-> Used to create a new empty Git repository from scratch.
+-> Run inside a new or existing folder.
+-> Creates a hidden .git directory to track changes.
+-> The repository is local only not visible on remote server  or github.
+-> You need to manually add a remote using:
+-> git remote add origin https://github.com/aryanmaurya2003/day6.git
+mkdir myproject  
+cd myproject  
+git init
+
+git clone
+-> Used to copy an existing Git repository (like from GitHub).
+-> Automatically creates a new folder with project files.
+-> Already includes the .git folder and full commit history.
+-> Automatically connects to the remote (named origin).
+-> You can start working and pushing right away.
+-> git clone https://github.com/aryanmaurya2003/day6.git
+-> cd day6.git/
+->git checkout master
+-> all files are visible now
+
+9//
+
+git branch
+-> Used to create, list, or delete branches.
+-> It does not switch to another branch — it only manages them.
+-> Shows all branches in your repository when used without options.
+-> The current active branch is marked with an asterisk *.
+-> Common commands:
+git branch            
+git branch new-branch    
+git branch -d branchname  
+
+git checkout
+-> Used to switch between branches or restore files.
+-> Moves your working directory to the selected branch.
+-> Updates your files to match that branch’s version.
+-> Can also be used to restore an older commit or file.
+-> Common commands:
+git checkout branchname     
+git checkout -b newbranch     
+git checkout filename      
+
+10// Difference between git fetch and git pull.
+git fetch
+-> Used to download changes from a remote repository without merging them into your local branch.
+-> It updates your remote-tracking branches (like origin/main) but does not change your working files.
+-> Safe to use when you just want to see what’s new before merging.
+-> After fetching, you can manually merge if you want using git merge.
+-> git fetch
+-> git merge origin/main
+
+git pull
+-> Used to fetch and merge changes automatically from a remote branch into your current branch.
+-> It is basically a shortcut for git fetch + git merge.
+-> Your working files get updated immediately.
+-> git pull
+
+
+11// How to squash commits?
+-> Git squash means combining multiple commits into one single commit to keep history clean.
+-> It is not a direct command, it’s done using interactive rebase.
+-> Helps to simplify commit history before merging into main or master.
+-> Use this command to start squashing:
+ git rebase -i HEAD~n ← (replace n with the number of commits to squash)
+-> In the editor that opens:
+ 	Keep the first commit as pick and change the rest to squash (or s).
+	pick 1a2b3c 2nd  
+	squash 4d5e6f  2nd
+-> Save and close the editor → Git combines them into one commit.
+-> Then edit the new commit message and save again.
+-> If everything is fine, run:
+-> git log --oneline 
+
+12// Show the difference between git reset and git revert.
+git reset
+Used to undo commits by moving the HEAD pointer to a previous commit.
+It can remove commits from history (dangerous for shared branches).
+Affects your local working directory depending on the option used.
+git reset --soft HEAD~1
+git log --oneline       
+
+git revert
+Used to undo a commit safely by creating a new commit that reverses the changes.
+Does not remove history — keeps all commits visible.
+Safe to use on public/shared branches.
+Common commands 
+git revert <04b4fcc> → 
+git revert HEAD 
+Example:
+git log --oneline      
+
+13// Delete branch from local and remote.
+-> git branch -d f2 //Deleted branch f2 (was 02a474e).
+-> git branch -a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
  
 
 
